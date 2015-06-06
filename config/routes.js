@@ -34,6 +34,11 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
+  },
+
+  'get /api/v1/search': {
+    controller: 'SearchController',
+    action: 'search'
   }
 
   /***************************************************************************

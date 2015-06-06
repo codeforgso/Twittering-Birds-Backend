@@ -21,17 +21,26 @@ module.exports = {
 
 		var params = req.params.all();
 
+		if(params.terms){
 
-		twitter.get('search/tweets', {q: params.terms}, function(err, tweets, response){
-			if(err){
-				return res.json(err);
-			}
+			twitter.get('search/tweets', {q: params.terms}, function(err, tweets, response){
+				if(err){
+					return res.json(err);
+				}
 
-			if(tweets){
-				return res.json(tweets);
-			}
+				if(tweets){
+					return res.json(tweets);
+				}
 
-		});
+			});
+
+		} else {
+
+			return res.badRequest({
+				error: 'No Search Terms';
+			})
+
+		}
 
 
 	}
