@@ -5,7 +5,7 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var Twitter = require('twitter')
+var Twitter = require('twitter');
 
 var twitter = new Twitter({
 	consumer_key: sails.config.secrets.twitter.consumer_key,
@@ -22,13 +22,13 @@ module.exports = {
 
 		if(params.terms){
 
-			twitter.get('search/tweets', {q: params.terms}, function(err, tweets, response){
+			twitter.get('search/tweets', {q: params.terms, count: 100}, function(err, tweets, response){
 				if(err){
-					return res.json(err);
+					return res.badRequest(err);
 				}
 
 				if(tweets){
-					return res.json(tweets);
+					return res.ok(tweets);
 				}
 
 			});
