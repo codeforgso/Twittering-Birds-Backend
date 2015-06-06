@@ -42,6 +42,38 @@ module.exports = {
 		}
 
 
+	},
+
+	stream: function(req, res){
+
+		res.ok();
+
+		twitter.stream('statuses/filter', {track: 'bird,cardinal,blue jay,hummingbird,robin'},  function(stream){
+			console.log('stream running');
+    	stream.on('data', function(status) {
+
+				if(status.coordinates || status.geo || status.place){
+
+					Tweet.create(status, function(err, done){
+						if(err){
+							console.log(err);
+							false;
+						}
+						if(done){
+							console.log(done.user.screen_name);
+							false;
+						}
+					});
+
+				}
+
+    	});
+
+    	stream.on('error', function(error) {
+      	console.log(error);
+    	});
+
+  });
 	}
 
 };
