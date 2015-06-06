@@ -7,7 +7,6 @@
 
 var Twitter = require('twitter')
 
-console.log(sails.config.secrets.consumer_key);
 var twitter = new Twitter({
 	consumer_key: sails.config.secrets.twitter.consumer_key,
 	consumer_secret: sails.config.secrets.twitter.consumer_secret,
@@ -37,8 +36,8 @@ module.exports = {
 		} else {
 
 			return res.badRequest({
-				error: 'No Search Terms';
-			})
+				error: 'No Search Terms'
+			});
 
 		}
 
