@@ -22,16 +22,22 @@ module.exports = {
 
 		if(params.terms){
 
-			twitter.get('search/tweets', {q: params.terms, count: 100}, function(err, tweets, response){
+			Tweet.find({
+				text: {
+					'contains': params.terms
+				}
+			}, function(err, tweets){
 				if(err){
-					return res.badRequest(err);
+					return res.json({
+						error: err
+					});
 				}
-
 				if(tweets){
-					return res.ok(tweets);
+					return res.json({
+						tweets: tweets
+					});
 				}
-
-			});
+			})
 
 		} else {
 
