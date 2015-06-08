@@ -39,6 +39,11 @@ module.exports.routes = {
   'get /api/v1/search': {
     controller: 'SearchController',
     action: 'search'
+  },
+
+  'get /api/v1/stream': {
+    controller: 'SearchController',
+    action: 'stream'
   }
 
   /***************************************************************************
